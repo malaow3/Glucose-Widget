@@ -69,7 +69,7 @@ def get_data():
         data = []
         for item in glucoseReading:
             data.append(int(item["Value"]))
-
+        data.reverse()
     else:
         print((connection2.code))
 
@@ -122,7 +122,6 @@ glucose, trend, datalist = get_data()
 trend_str = replace_trend(trend)
 
 final_string = f"{glucose}{trend_str}"
-# final_string = f"{glucose}"
 data = {"bg": final_string}
 f = open("output.txt", "w")
 json.dump(data, f)

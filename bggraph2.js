@@ -1,32 +1,40 @@
-/*
-    file:           bggraph2.js
-    fileOverview:   Medium widget script
-*/
 
 // Replace url with your repl link
 const url = "https://example.myaccount.repl.co"
+let imgurl = url + "/plot2.png"
 let req = new Request(url)
 let res = await req.loadJSON()
 
 if (config.runsInWidget) {
-    let widget = await createWidget(res.bg, "#212121")
-    Script.setWidget(widget)      
-    Script.complete()
+    // create and show widget
+     let widget = await createWidget(res.bg,"", "", "#212121", imgurl)
+     Script.setWidget(widget)
+
+  Script.complete()
+}    Safari.open("shortcuts://run-shortcut?name=SpringBoard&silent=true")
+
+function createRow(title, number) {
+  let row = new UITableRow()
+  row.addText(title)
+  row.addText(number.toString()).rightAligned()
+  return row
 }
 
-async function createWidget(pretitle, color) {
+async function createWidget(pretitle, title, subtitle, color, imgurl) {
     let w = new ListWidget()
+    w.addSpacer(null)
     w.backgroundColor = new Color(color)
-    let item = "                         " + pretitle
+    let item = "                                    " + pretitle
     let preTxt = w.addText(item)
     preTxt.textColor = Color.white()
-    preTxt.font = Font.systemFont(32)
-  
-    let imgReq = new Request("https://example.myaccount.repl.co/plot2.png")
+    preTxt.rightAlignText()
+    preTxt.font = Font.systemFont(30)
+    let imgReq = new Request(imgurl)
     let img = await imgReq.loadImage()
     let wimg = w.addImage(img)
-    wimg.centerAlignImage()
-    wimg.imageSize = new Size(400, 90)
-
+    wimg.rightAlignImage()
+    wimg.imageSize = new Size(580, 125)
+    w.centerAlignContent
+    w.setPadding(0, 0, 0, 0)
     return w
 }

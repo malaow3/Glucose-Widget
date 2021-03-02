@@ -1,5 +1,5 @@
 # Glucose-Widget
-Continuous Glucose Monitor iOS 14 Widget setup using Python and JS
+Continuous Glucose Monitor iOS 14 Widget setup using Go/Python and JS
 
 As per Scriptable docs, "the widget will refresh periodically and the rate at which the widget refreshes is largely determined by the operating system". My experience has been the widget will update within a new glucose reading (~5 minute window), but will not update as frequently with low power mode active.
 
